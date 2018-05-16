@@ -1,0 +1,21 @@
+.home-main {
+    height: 100vh;
+    width: 100%;
+    background: #222;
+    color: #0f0;
+}
+
+.buy-main {
+    height: 100vh;
+    width: 100%;
+    background: #222;
+    color: #0f0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.buy-main img {
+    max-height: 200px;
+    max-width: 200px;
+}
