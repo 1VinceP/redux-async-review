@@ -2,25 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './home.css';
 
-class Home extends Component {
-    constructor() {
-        super();
+function Home() {
 
-        this.state = {
-
-        }
-    }
-
-    render() {
-        return (
-            <div className='home-main'>
-                <div>Welcome to the Goat Black Market</div>
-                <Link to='/buy'><button>Buy Illegal Goats</button></Link>
-                <Link to='/sell'><button>Sell Illegal Goats</button></Link>
-                <Link to='/trade'><button>Trade Illegal Goats</button></Link>
-            </div>
-        )
-    }
+    return (
+        <div className='home-main'>
+            <div>Welcome to the Goat Black Market</div>
+            {/* NOTE, I moved the links to the App component for better flow */}
+        </div>
+    )
 }
 
 export default Home;

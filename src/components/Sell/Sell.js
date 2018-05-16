@@ -1,46 +1,43 @@
-/**
- * GETTING STARTED ON THE SELL PAGE
- * 1. Display 'owned goats' from Redux
- *   1.1 Get goats into 'owned goats' list on Redux
- *      1.1.1 On purchase, add cart to 'owned goats list' then clear cart
- * 
- * 2. Sell goats
- *   2.1 Remove goat from 'owned goats' list on Redux
- *      2.1.1 Redux.purchaseCart( cart ) {
- *              return {
- *                  type: PURCHASE_CART,
- *                  payload: cart
- *              }
- *            }
- * 
- *            Redux.reducer( ... ) {
- *              ...
- *              case PURCHASE_CART:
- *                  return Object.assign({}, state, {cart: [], ownedGoats: [...state.ownedGoats,                                    action.payload] })
- *              ...
- *            }
- * 
- *  //////// REMEMBER TO PASS props.cart IN onCLICK ////////
- */
-
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-class Sell extends Component {
-    constructor() {
-        super();
+function Sell(props) {
 
-        this.state = {
+    // Because we have nested the arrays, we now have to flatten them into a single array
+    // I used a reduce method, but those can be complicated, so here's a for loop if you prefer that
+        // let goats = []
+        // for( let i = 0; i < props.ownedGoats.length; i++ ) {
+        //     props.ownedGoats[i].map( goat => {
+        //         goats.push( goat )
+        //     } )
+        // }
+    let goats = props.ownedGoats.reduce( (acc, val) => acc.concat(val), [] )
 
-        }
-    }
-
-    render() {
+    // Now that we have our flattened array, we can map over it to display our goats
+    let mappedGoats = goats.map( (goat, i) => {
         return (
-            <div>
-                Sell Page
+            <div key={i}>
+                <img src={goat.img} alt='goat'/>
+                <div>{goat.name}</div>
+                <div>${goat.price}</div>
             </div>
         )
-    }
+    } )
+
+    return (
+        <div className='main'>
+            {mappedGoats}
+        </div>
+    )
 }
 
-export default Sell;
+function mapStateToProps( state ) {
+    // Destructuring off of state
+    const { ownedGoats } = state;
+
+    return {
+        ownedGoats
+    };
+}
+
+export default connect( mapStateToProps, null )(Sell);

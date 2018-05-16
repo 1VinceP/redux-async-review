@@ -3,35 +3,25 @@ import { connect } from 'react-redux';
 import { addToCart, getSwapi } from '../../redux/reducer';
 import data from '../../data';
 
-class Buy extends Component {
-    constructor() {
-        super();
+function Buy(props) {
 
-        this.state = {
-
-        }
-    }
-
-    render() {
-
-        let goats = data.map( (goat, i) => {
-            return (
-                <div key={i}>
-                    <img src={goat.img} alt='goat'/>
-                    <div>{goat.name}</div>
-                    <div>${goat.price}</div>
-                    <button onClick={() => this.props.addToCart(goat)}>Add to Cart</button>
-                </div>
-            )
-        } )
-
+    let goats = data.map( (goat, i) => {
         return (
-            <div className='buy-main'>
-                <button onClick={() => this.props.getSwapi()}>Get Swapi</button>
-                {goats}
+            <div key={i}>
+                <img src={goat.img} alt='goat'/>
+                <div>{goat.name}</div>
+                <div>${goat.price}</div>
+                <button onClick={() => props.addToCart(goat)}>Add to Cart</button>
             </div>
         )
-    }
+    } )
+
+    return (
+        <div className='buy-main'>
+            <button onClick={() => props.getSwapi()}>Get Swapi</button>
+            {goats}
+        </div>
+    )
 }
 
 function mapStateToProps( state ) {

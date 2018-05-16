@@ -14,9 +14,11 @@ function Cart( props ) {
     } )
 
     return (
-        <div>
+        <div className='main'>
             {cart}
-            <button onClick={() => props.purchaseCart()}>Purchase Cart</button>
+            {/* We now have to pass the current cart to redux to save to the
+                ownedGoats array */}
+            <button onClick={() => props.purchaseCart(props.cart)}>Purchase Cart</button>
         </div>
     )
 }

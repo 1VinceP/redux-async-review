@@ -6,7 +6,7 @@
 }
 
 .buy-main {
-    height: 100vh;
+    min-height: 98vh;
     width: 100%;
     background: #222;
     color: #0f0;
@@ -18,4 +18,46 @@
 .buy-main img {
     max-height: 200px;
     max-width: 200px;
+}
+
+.main {
+    min-height: 98vh;
+    width: 100%;
+    background: #222;
+    color: #0f0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.main img {
+    max-height: 200px;
+    max-width: 200px;
+}
+
+.trade-main {
+    min-height: 98vh;
+    width: 100%;
+    background: #222;
+    color: #0f0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.trade-main img {
+    max-height: 100px;
+    max-width: 100px;
+    margin-right: 15px;
+}
+
+.trade-goats {
+    display: flex;
+    margin-top: 6px;
+    margin-bottom: 100px;
+}
+
+.trade-manager {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
