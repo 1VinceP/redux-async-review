@@ -6,19 +6,7 @@
  * 
  * 2. Sell goats
  *   2.1 Remove goat from 'owned goats' list on Redux
- *      2.1.1 Redux.purchaseCart( cart ) {
- *              return {
- *                  type: PURCHASE_CART,
- *                  payload: cart
- *              }
- *            }
- * 
- *            Redux.reducer( ... ) {
- *              ...
- *              case PURCHASE_CART:
- *                  return Object.assign({}, state, {cart: [], ownedGoats: [...state.ownedGoats,                                    action.payload] })
- *              ...
- *            }
+ *      
  * 
  *  //////// REMEMBER TO PASS props.cart IN onCLICK ////////
  */
