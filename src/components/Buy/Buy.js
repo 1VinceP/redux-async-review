@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addToCart } from '../../redux/reducer';
+import { addToCart, getSwapi } from '../../redux/reducer';
 import data from '../../data';
 
 class Buy extends Component {
@@ -27,6 +27,7 @@ class Buy extends Component {
 
         return (
             <div className='buy-main'>
+                <button onClick={() => this.props.getSwapi()}>Get Swapi</button>
                 {goats}
             </div>
         )
@@ -37,5 +38,5 @@ function mapStateToProps( state ) {
     return { cart: state.cart }
 }
 
-export default connect( mapStateToProps, { addToCart } )(Buy);
+export default connect( mapStateToProps, { addToCart, getSwapi } )(Buy);
 
