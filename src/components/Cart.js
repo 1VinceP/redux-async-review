@@ -18,13 +18,17 @@ function Cart( props ) {
             {cart}
             {/* We now have to pass the current cart to redux to save to the
                 ownedGoats array */}
-            <button onClick={() => props.purchaseCart(props.cart)}>Purchase Cart</button>
+            <button onClick={() => props.purchaseCart(props.cart, props.ownedGoats)}>Purchase Cart</button>
         </div>
     )
 }
 
 function mapStateToProps( state ) {
-    return { cart: state.cart }
+    const { cart, ownedGoats } = state
+    return {
+        cart,
+        ownedGoats
+    }
 }
 
 export default connect( mapStateToProps, { purchaseCart } )(Cart);

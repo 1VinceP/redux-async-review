@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setWanted, setGiving } from '../../redux/reducer';
+import { setWanted, setGiving, handleTrade } from '../../redux/reducer';
 import data from '../../data';
 
 function Trade(props) {
+    const { goatsForTrade, setWanted, ownedGoats, setGiving, wantedGoat, givingGoat } = props
 
-    let tradeableGoats = data.map( (goat, i) => {
+    let tradeGoats = goatsForTrade.map( (goat, i) => {
         return (
             <div key={i}>
-                <img onClick={() => props.setWanted(goat)} src={goat.img} alt='goat'/>
+                <img onClick={() => setWanted(goat, i)} src={goat.img} alt='goat'/>
                 <div>{goat.name}</div>
             </div>
         )
     } )
 
-    // Same logic as in the sell component
-    let goats = props.ownedGoats.reduce( (acc, val) => acc.concat(val), [] )
-    let mappedGoats = goats.map( (goat, i) => {
+    let goats = ownedGoats.map( (goat, i) => {
         return (
             <div key={i}>
-                <img onClick={() => props.setGiving(goat)} src={goat.img} alt='goat'/>
+                <img onClick={() => setGiving(goat, i)} src={goat.img} alt='goat'/>
                 <div>{goat.name}</div>
             </div>
         )
@@ -28,17 +27,18 @@ function Trade(props) {
     return (
         <div className='trade-main'>
             <div>Goats for trade</div>
-            <section className='trade-goats'>{tradeableGoats}</section>
+            <section className='trade-goats'>{tradeGoats}</section>
 
             <div>Your goats</div>
-            <section className='trade-goats'>{mappedGoats}</section>
+            <section className='trade-goats'>{goats}</section>
 
             <section className='trade-manager'>
                 <div>Wanted goat: </div>
-                <img src={props.wantedGoat.img} />
+                <img src={wantedGoat.img} />
                 <div>Giving goat: </div>
-                <img src={props.givingGoat.img} />
-                <button>Complete trade</button>
+                <img src={givingGoat.img} />
+                {/* We have spread over these goats when we pass them in, otherwise redux gets updated with itself, breaking immutability. We do the same thing when selling goats */}
+                <button onClick={() => props.handleTrade([...goatsForTrade], [...ownedGoats], wantedGoat, givingGoat)}>Complete trade</button>
             </section>
             
         </div>
@@ -46,13 +46,14 @@ function Trade(props) {
 }
 
 function mapStateToProps( state ) {
-    const { ownedGoats, wantedGoat, givingGoat } = state;
+    const { goatsForTrade, ownedGoats, wantedGoat, givingGoat } = state;
 
     return {
+        goatsForTrade,
         ownedGoats,
         wantedGoat,
         givingGoat
     };
 }
 
-export default connect( mapStateToProps, { setWanted, setGiving } )(Trade);
+export default connect( mapStateToProps, { setWanted, setGiving, handleTrade } )(Trade);
