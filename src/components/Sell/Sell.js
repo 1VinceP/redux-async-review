@@ -7,8 +7,6 @@
  * 2. Sell goats
  *   2.1 Remove goat from 'owned goats' list on Redux
  *      
- * 
- *  //////// REMEMBER TO PASS props.cart IN onCLICK ////////
  */
 
 import React, { Component } from 'react';

@@ -1,6 +1,8 @@
 import axios from 'axios';
+import data from '../data';
 
 let initialState = {
+    goatsForTrade: data,
     cart: [],
     ownedGoats: [],
     pendingTrades: [],
